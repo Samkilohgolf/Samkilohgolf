@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skiloh | Precision Golf Coaching with Sam Kiloh</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,12 +288,15 @@
     max-width: 1100px;
     margin-left: auto; margin-right: auto;
     text-align: left;
+    align-items: stretch;
   }
   .service-card {
     background: var(--white);
     padding: 2.25rem 2rem;
     border-top: 3px solid var(--gold);
     transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   .service-card:hover { transform: translateY(-4px); }
   .service-number {
@@ -323,6 +324,7 @@
     list-style: none;
     display: flex; flex-direction: column; gap: 0.4rem;
     margin-bottom: 1.75rem;
+    flex: 1;
   }
   .service-features li {
     font-size: 0.85rem;
@@ -344,6 +346,10 @@
     border-bottom: 1px solid var(--gold);
     padding-bottom: 2px;
     transition: color 0.2s;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
   }
   .service-link:hover { color: var(--gold); }
 
@@ -378,6 +384,8 @@
     white-space: nowrap;
     margin-bottom: 3rem;
     position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   }
   .trust-locations-inner {
     display: inline-block;
@@ -387,6 +395,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.35);
+    white-space: nowrap;
   }
   @keyframes trust-scroll {
     from { transform: translateX(0); }
@@ -398,32 +407,36 @@
     overflow: hidden;
     position: relative;
     margin-top: 2.5rem;
-    /* fade edges */
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   }
   .reviews-marquee-wrap:hover .reviews-track { animation-play-state: paused; }
   .reviews-track {
     display: flex;
-    gap: 1.5rem;
+    gap: 0;
     width: max-content;
-    animation: reviews-scroll 38s linear infinite;
+    animation: reviews-scroll 45s linear infinite;
     text-align: left;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   @keyframes reviews-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
   }
   .review-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(201,168,76,0.15);
+    border-right: none;
     padding: 1.75rem 1.75rem;
     width: 340px;
     flex-shrink: 0;
     box-sizing: border-box;
   }
+  .review-card:last-child { border-right: 1px solid rgba(201,168,76,0.15); }
   @media (max-width: 600px) {
-    .review-card { width: 280px; }
+    .review-card { width: 85vw; }
   }
   .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.75rem; }
   .review-text {
@@ -925,7 +938,7 @@
         <li>Custom success plan</li>
         <li>After-care & follow-up drills</li>
       </ul>
-      <a href="#contact" class="service-link">Book a session →</a>
+      <a href="#contact" class="service-link">Enquire Now →</a>
     </div>
     <div class="service-card">
       <div class="service-number">02</div>
@@ -937,7 +950,7 @@
         <li>Direct messaging support</li>
         <li>Progress tracking</li>
       </ul>
-      <a href="#contact" class="service-link">Start online →</a>
+      <a href="https://skillest.com/coach/samkilohgolf" target="_blank" rel="noopener noreferrer" class="service-link">Start online →</a>
     </div>
     <div class="service-card">
       <div class="service-number">03</div>
@@ -949,7 +962,7 @@
         <li>Competition preparation</li>
         <li>Long-term development plan</li>
       </ul>
-      <a href="#contact" class="service-link">Enquire now →</a>
+      <a href="#contact" class="service-link">Enquire Now →</a>
     </div>
   </div>
 </section>
@@ -961,8 +974,7 @@
   <p class="trust-sub">5-Star Skilest Rating · 200+ Reviews</p>
   <div class="trust-locations">
     <span class="trust-locations-inner">
-      Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp;
-      Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp;
+      Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp; Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp; Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp; Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp;
     </span>
   </div>
   <div class="reviews-marquee-wrap">
@@ -1015,13 +1027,10 @@
   </div>
   <div>
     <div class="enquiry-form-wrap">
-      <form id="enquiry-form">
-        <!-- Web3Forms: delivers directly to samkiloh@outlook.com, no backend needed -->
-        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
-        <input type="hidden" name="subject" value="New Coaching Enquiry — Skiloh Golf" />
-        <input type="hidden" name="from_name" value="Skiloh Website" />
-        <input type="hidden" name="redirect" value="false" />
-        <input type="checkbox" name="botcheck" style="display:none" />
+      <form id="enquiry-form" action="https://formspree.io/f/xeoqkgdp" method="POST">
+        <input type="hidden" name="_subject" value="New Coaching Enquiry — Skiloh Golf" />
+        <input type="hidden" name="_replyto" value="samkilohgolf@outlook.com" />
+        <input type="text" name="_gotcha" style="display:none" />
         <div class="enquiry-row">
           <input type="text" name="name" placeholder="Your Name" required class="enquiry-input" />
           <input type="email" name="email" placeholder="Your Email" required class="enquiry-input" />
@@ -1102,7 +1111,7 @@
     });
   })();
 
-  // --- ENQUIRY FORM (Web3Forms → samkiloh@outlook.com) ---
+  // --- ENQUIRY FORM (Formspree → samkilohgolf@outlook.com) ---
   (function () {
     const form = document.getElementById('enquiry-form');
     const success = document.getElementById('enquiry-success');
@@ -1115,25 +1124,23 @@
       btn.textContent = 'Sending…';
 
       try {
-        const data = new FormData(form);
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch(form.action, {
           method: 'POST',
-          body: data,
+          body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
-        const json = await res.json();
-        if (json.success) {
+        if (res.ok) {
           form.style.display = 'none';
           success.style.display = 'block';
         } else {
           btn.disabled = false;
           btn.textContent = 'Send Enquiry →';
-          alert('Something went wrong. Please email Sam directly at samkiloh@outlook.com');
+          alert('Something went wrong. Please email Sam directly at samkilohgolf@outlook.com');
         }
       } catch (err) {
         btn.disabled = false;
         btn.textContent = 'Send Enquiry →';
-        alert('Something went wrong. Please email Sam directly at samkiloh@outlook.com');
+        alert('Something went wrong. Please email Sam directly at samkilohgolf@outlook.com');
       }
     });
   })();
