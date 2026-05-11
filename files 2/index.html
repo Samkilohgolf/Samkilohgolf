@@ -288,12 +288,15 @@
     max-width: 1100px;
     margin-left: auto; margin-right: auto;
     text-align: left;
+    align-items: stretch;
   }
   .service-card {
     background: var(--white);
     padding: 2.25rem 2rem;
     border-top: 3px solid var(--gold);
     transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   .service-card:hover { transform: translateY(-4px); }
   .service-number {
@@ -321,6 +324,7 @@
     list-style: none;
     display: flex; flex-direction: column; gap: 0.4rem;
     margin-bottom: 1.75rem;
+    flex: 1;
   }
   .service-features li {
     font-size: 0.85rem;
@@ -342,6 +346,10 @@
     border-bottom: 1px solid var(--gold);
     padding-bottom: 2px;
     transition: color 0.2s;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
   }
   .service-link:hover { color: var(--gold); }
 
@@ -407,12 +415,15 @@
     display: flex;
     gap: 0;
     width: max-content;
-    animation: reviews-scroll 38s linear infinite;
+    animation: reviews-scroll 45s linear infinite;
     text-align: left;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   @keyframes reviews-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
   }
   .review-card {
     background: rgba(255,255,255,0.05);
@@ -927,7 +938,7 @@
         <li>Custom success plan</li>
         <li>After-care & follow-up drills</li>
       </ul>
-      <a href="#contact" class="service-link">Book a session →</a>
+      <a href="#contact" class="service-link">Enquire Now →</a>
     </div>
     <div class="service-card">
       <div class="service-number">02</div>
@@ -951,7 +962,7 @@
         <li>Competition preparation</li>
         <li>Long-term development plan</li>
       </ul>
-      <a href="#contact" class="service-link">Enquire now →</a>
+      <a href="#contact" class="service-link">Enquire Now →</a>
     </div>
   </div>
 </section>
