@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skiloh | Precision Golf Coaching with Sam Kiloh</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -388,18 +392,38 @@
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  /* REVIEWS MARQUEE */
+  .reviews-marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 2.5rem;
+    /* fade edges */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .reviews-marquee-wrap:hover .reviews-track { animation-play-state: paused; }
+  .reviews-track {
+    display: flex;
     gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    width: max-content;
+    animation: reviews-scroll 38s linear infinite;
     text-align: left;
+  }
+  @keyframes reviews-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
   .review-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(201,168,76,0.15);
-    padding: 1.75rem 1.5rem;
+    padding: 1.75rem 1.75rem;
+    width: 340px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  @media (max-width: 600px) {
+    .review-card { width: 280px; }
   }
   .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.75rem; }
   .review-text {
@@ -700,10 +724,94 @@
     background: rgba(201,168,76,0.06);
   }
 
+  /* HAMBURGER BUTTON */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px; height: 40px;
+    background: none;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  /* MOBILE OVERLAY */
+  .mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgba(10,20,45,0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-close {
+    position: absolute;
+    top: 1.4rem; right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+  }
+  .mobile-nav-close:hover { color: var(--gold); }
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0 2rem;
+  }
+  .mobile-nav-item {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: color 0.2s;
+  }
+  .mobile-nav-item:hover { color: var(--gold); }
+  .mobile-nav-cta {
+    margin-top: 1.5rem;
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    border-radius: 3px;
+    border: none !important;
+    padding: 1rem 2.5rem !important;
+    font-weight: 600 !important;
+  }
+
   /* MOBILE */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
     .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
     .about-img-wrap { max-width: 340px; margin: 0 auto; }
     .services-grid { grid-template-columns: 1fr; }
@@ -724,13 +832,26 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo"><img src="skiloh-logo-nav.png" alt="Skiloh Golf Coaching" style="height:46px;width:auto;display:block;"></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#coaching">Coaching</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-mobile-link">About</a></li>
+    <li><a href="#coaching" class="nav-mobile-link">Coaching</a></li>
+    <li><a href="#reviews" class="nav-mobile-link">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta nav-mobile-link">Book Now</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
+  <ul class="mobile-nav-links">
+    <li><a href="#about" class="mobile-nav-item">About</a></li>
+    <li><a href="#coaching" class="mobile-nav-item">Coaching</a></li>
+    <li><a href="#reviews" class="mobile-nav-item">Reviews</a></li>
+    <li><a href="#contact" class="mobile-nav-item mobile-nav-cta">Book Now</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -844,21 +965,40 @@
       Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp;
     </span>
   </div>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Sam's analysis was superb. He helped break down my faults in such a simple and understandable way. I now feel like I've got the best possible plan going forward, with easy-to-remember drills and swing feelings that I can take straight onto the course. I'd highly recommend Sam to anyone looking to improve their golf game!"</p>
-      <p class="review-author">Paddy McKenna</p>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Sam's coaching skills are excellent, and the use of technology and the Skillest follow up really helps when it comes to remembering everything that was said and taking the info to the range to practise. Highly recommend Sam if you are keen to improve any area of your golf at whatever level."</p>
-      <p class="review-author">Stewart Ritchie</p>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"After my first in-person lesson with Sam, I was very impressed how quickly he identified some small issues in my swing and was able to provide simple but very effective training drills to resolve. Very approachable and great detail provided with the analysis. Top coach."</p>
-      <p class="review-author">Niall Young</p>
+  <div class="reviews-marquee-wrap">
+    <div class="reviews-track" id="reviewsTrack">
+      <!-- Original set -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's analysis was superb. He helped break down my faults in such a simple and understandable way. I now feel like I've got the best possible plan going forward, with easy-to-remember drills and swing feelings that I can take straight onto the course. I'd highly recommend Sam to anyone looking to improve their golf game!"</p>
+        <p class="review-author">Paddy McKenna</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's coaching skills are excellent, and the use of technology and the Skillest follow up really helps when it comes to remembering everything that was said and taking the info to the range to practise. Highly recommend Sam if you are keen to improve any area of your golf at whatever level."</p>
+        <p class="review-author">Stewart Ritchie</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"After my first in-person lesson with Sam, I was very impressed how quickly he identified some small issues in my swing and was able to provide simple but very effective training drills to resolve. Very approachable and great detail provided with the analysis. Top coach."</p>
+        <p class="review-author">Niall Young</p>
+      </div>
+      <!-- Duplicated set for seamless infinite loop -->
+      <div class="review-card" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's analysis was superb. He helped break down my faults in such a simple and understandable way. I now feel like I've got the best possible plan going forward, with easy-to-remember drills and swing feelings that I can take straight onto the course. I'd highly recommend Sam to anyone looking to improve their golf game!"</p>
+        <p class="review-author">Paddy McKenna</p>
+      </div>
+      <div class="review-card" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's coaching skills are excellent, and the use of technology and the Skillest follow up really helps when it comes to remembering everything that was said and taking the info to the range to practise. Highly recommend Sam if you are keen to improve any area of your golf at whatever level."</p>
+        <p class="review-author">Stewart Ritchie</p>
+      </div>
+      <div class="review-card" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"After my first in-person lesson with Sam, I was very impressed how quickly he identified some small issues in my swing and was able to provide simple but very effective training drills to resolve. Very approachable and great detail provided with the analysis. Top coach."</p>
+        <p class="review-author">Niall Young</p>
+      </div>
     </div>
   </div>
 </section>
@@ -875,15 +1015,19 @@
   </div>
   <div>
     <div class="enquiry-form-wrap">
-      <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="enquiry-form">
-        <input type="hidden" name="form-name" value="enquiry" />
-        <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <form id="enquiry-form">
+        <!-- Web3Forms: delivers directly to samkiloh@outlook.com, no backend needed -->
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+        <input type="hidden" name="subject" value="New Coaching Enquiry — Skiloh Golf" />
+        <input type="hidden" name="from_name" value="Skiloh Website" />
+        <input type="hidden" name="redirect" value="false" />
+        <input type="checkbox" name="botcheck" style="display:none" />
         <div class="enquiry-row">
           <input type="text" name="name" placeholder="Your Name" required class="enquiry-input" />
           <input type="email" name="email" placeholder="Your Email" required class="enquiry-input" />
         </div>
         <input type="tel" name="phone" placeholder="Your Phone Number" class="enquiry-input" />
-        <textarea name="enquiry" placeholder="Your enquiry — tell Sam about your game, goals, or anything you'd like to discuss..." required class="enquiry-input enquiry-textarea"></textarea>
+        <textarea name="message" placeholder="Your enquiry — tell Sam about your game, goals, or anything you'd like to discuss..." required class="enquiry-input enquiry-textarea"></textarea>
         <button type="submit" class="enquiry-submit">Send Enquiry →</button>
         <p class="enquiry-note">Sam will be in touch as soon as possible.</p>
       </form>
@@ -932,6 +1076,33 @@
 </footer>
 
 <script>
+  // --- HAMBURGER MOBILE NAV ---
+  (function () {
+    const btn = document.getElementById('navHamburger');
+    const overlay = document.getElementById('mobileNavOverlay');
+    const closeBtn = document.getElementById('mobileNavClose');
+    const items = document.querySelectorAll('.mobile-nav-item');
+
+    function openMenu() {
+      overlay.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      overlay.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (btn) btn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    items.forEach(item => item.addEventListener('click', closeMenu));
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeMenu();
+    });
+  })();
+
+  // --- ENQUIRY FORM (Web3Forms → samkiloh@outlook.com) ---
   (function () {
     const form = document.getElementById('enquiry-form');
     const success = document.getElementById('enquiry-success');
@@ -944,23 +1115,25 @@
       btn.textContent = 'Sending…';
 
       try {
-        const res = await fetch('/', {
+        const data = new FormData(form);
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString(),
+          body: data,
+          headers: { 'Accept': 'application/json' }
         });
-        if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
           form.style.display = 'none';
           success.style.display = 'block';
         } else {
           btn.disabled = false;
           btn.textContent = 'Send Enquiry →';
-          alert('Something went wrong. Please try again or email Sam directly at samkilohgolf@outlook.com');
+          alert('Something went wrong. Please email Sam directly at samkiloh@outlook.com');
         }
       } catch (err) {
         btn.disabled = false;
         btn.textContent = 'Send Enquiry →';
-        alert('Something went wrong. Please try again or email Sam directly at samkilohgolf@outlook.com');
+        alert('Something went wrong. Please email Sam directly at samkiloh@outlook.com');
       }
     });
   })();
