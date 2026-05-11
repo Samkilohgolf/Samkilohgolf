@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skiloh | Precision Golf Coaching with Sam Kiloh</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f7f4ef;
+    --white: #ffffff;
+    --text-dark: #0f1f3d;
+    --text-muted: #5a6580;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    background: rgba(15,31,61,0.92);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    text-decoration: none;
+    display: flex; align-items: center;
+  }
+  .nav-logo img {
+    filter: invert(1) hue-rotate(180deg) brightness(1.15) contrast(1.1) drop-shadow(0 0 10px rgba(201,168,76,0.35));
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 110vh;
+    min-height: 700px;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+    background: var(--navy);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(15,31,61,0.1) 0%, rgba(15,31,61,0.7) 60%, rgba(15,31,61,0.97) 100%);
+    z-index: 1;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+    filter: grayscale(20%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 2.5rem 5rem;
+    max-width: 800px;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    border-left: 2px solid var(--gold);
+    padding-left: 0.75rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-bullets {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .hero-bullets li {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-bullets li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 1rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, gap 0.2s;
+  }
+  .hero-cta:hover { background: var(--gold-light); gap: 1rem; }
+  .hero-cta-arrow { font-size: 1.1rem; }
+
+  /* TICKER */
+  .ticker {
+    background: var(--gold);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.65rem 0;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 22s linear infinite;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 2.5rem; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; }
+  .divider {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem 5rem;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .about-img-frame {
+    position: absolute;
+    inset: -12px;
+    border: 1px solid rgba(201,168,76,0.3);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .about-img-wrap > * { position: relative; z-index: 1; }
+  .about .section-label { color: var(--gold); }
+  .about .section-title { color: var(--white); }
+  .about .divider { background: var(--gold); }
+  .about-bio {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5rem;
+  }
+  .about-checks {
+    list-style: none;
+    margin-bottom: 2rem;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .about-checks li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+  }
+  .about-checks li::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+  .about-philosophy {
+    border-left: 2px solid var(--gold);
+    padding-left: 1.25rem;
+    margin-top: 2rem;
+  }
+  .about-philosophy h4 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .about-philosophy p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* SERVICES */
+  .services { background: var(--cream); text-align: center; }
+  .services .section-label, .services .section-title, .services .divider { margin-left: auto; margin-right: auto; }
+  .services .divider { margin-left: auto; margin-right: auto; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    max-width: 1100px;
+    margin-left: auto; margin-right: auto;
+    text-align: left;
+    align-items: stretch;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2.25rem 2rem;
+    border-top: 3px solid var(--gold);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card:hover { transform: translateY(-4px); }
+  .service-number {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: rgba(201,168,76,0.18);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .service-card h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .service-features {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    margin-bottom: 1.75rem;
+    flex: 1;
+  }
+  .service-features li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .service-features li::before {
+    content: '—';
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .service-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .service-link:hover { color: var(--gold); }
+
+  /* TRUST */
+  .trust {
+    background: var(--navy);
+    padding: 4rem 2.5rem;
+    text-align: center;
+  }
+  .trust-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .trust-stars {
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .trust-sub {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .trust-locations {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 3rem;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .trust-locations-inner {
+    display: inline-block;
+    animation: trust-scroll 28s linear infinite;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    white-space: nowrap;
+  }
+  @keyframes trust-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  /* REVIEWS MARQUEE */
+  .reviews-marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 2.5rem;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .reviews-marquee-wrap:hover .reviews-track { animation-play-state: paused; }
+  .reviews-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: reviews-scroll 45s linear infinite;
+    text-align: left;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  @keyframes reviews-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+  .review-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-right: none;
+    padding: 1.75rem 1.75rem;
+    width: 340px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  .review-card:last-child { border-right: 1px solid rgba(201,168,76,0.15); }
+  @media (max-width: 600px) {
+    .review-card { width: 85vw; }
+  }
+  .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .review-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1rem;
+  }
+  .review-author {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* LEAD MAGNET */
+  .lead {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 5rem;
+  }
+  .lead-visual {
+    background: var(--navy);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .lead-visual::before {
+    content: '';
+    position: absolute; top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .lead-visual-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+  .lead-visual h3 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .lead-visual p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .lead-form-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .lead .section-title { margin-bottom: 0.75rem; }
+  .lead-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .lead-perks {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .lead-perks li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .lead-perks li::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .form-row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .form-input {
+    flex: 1;
+    padding: 0.85rem 1rem;
+    border: 1px solid #d9d3c8;
+    background: var(--white);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    outline: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: #b0a898; }
+  .form-submit {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--navy-mid); }
+  .form-note {
+    font-size: 0.75rem;
+    color: #b0a898;
+    margin-top: 0.6rem;
+    text-align: center;
+  }
+
+  /* ENQUIRY / CONTACT */
+  .enquiry {
+    background: var(--gold);
+    padding: 6rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .enquiry .section-label { color: var(--navy); }
+  .enquiry .section-title { color: var(--navy); }
+  .enquiry .divider { background: var(--navy); }
+  .enquiry-desc {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: rgba(15,31,61,0.75);
+    margin-bottom: 1.75rem;
+  }
+  .enquiry-detail {
+    font-size: 0.82rem;
+    color: rgba(15,31,61,0.6);
+    letter-spacing: 0.05em;
+  }
+  .enquiry-detail a {
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .enquiry-detail a:hover { color: var(--navy-mid); }
+  .enquiry-form-wrap {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(15,31,61,0.15);
+    padding: 2.5rem;
+  }
+  .enquiry-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(15,31,61,0.2);
+    background: rgba(255,255,255,0.5);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--navy);
+    outline: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .enquiry-input:focus { border-color: var(--navy); }
+  .enquiry-input::placeholder { color: rgba(15,31,61,0.45); }
+  .enquiry-textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+  .enquiry-row { display: flex; gap: 0.75rem; }
+  .enquiry-row .enquiry-input { flex: 1; }
+  .enquiry-submit {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--navy);
+    color: var(--gold);
+    border: none;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+    margin-top: 0.25rem;
+  }
+  .enquiry-submit:hover { background: var(--navy-mid); }
+  .enquiry-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .enquiry-note {
+    font-size: 0.75rem;
+    color: rgba(15,31,61,0.5);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+  .enquiry-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+  .enquiry-success-icon {
+    font-size: 2.5rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .enquiry-success h3 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .enquiry-success p {
+    font-size: 0.9rem;
+    color: rgba(15,31,61,0.65);
+    line-height: 1.75;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #07101e;
+    padding: 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* SOCIAL ICONS */
+  .footer-upper {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem; width: 100%;
+  }
+  .footer-lower {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.5rem; margin-top: 0.5rem;
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
+  .footer-social { display: flex; gap: 0.6rem; align-items: center; }
+  .social-link {
+    display: flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 0.64rem; font-weight: 700; letter-spacing: 0.02em;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .social-link:hover {
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.5);
+    background: rgba(201,168,76,0.06);
+  }
+
+  /* HAMBURGER BUTTON */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px; height: 40px;
+    background: none;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  /* MOBILE OVERLAY */
+  .mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgba(10,20,45,0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-close {
+    position: absolute;
+    top: 1.4rem; right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+  }
+  .mobile-nav-close:hover { color: var(--gold); }
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0 2rem;
+  }
+  .mobile-nav-item {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: color 0.2s;
+  }
+  .mobile-nav-item:hover { color: var(--gold); }
+  .mobile-nav-cta {
+    margin-top: 1.5rem;
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    border-radius: 3px;
+    border: none !important;
+    padding: 1rem 2.5rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+    .about-img-wrap { max-width: 340px; margin: 0 auto; }
+    .services-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .lead { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+    .enquiry { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+    .enquiry-form-wrap { padding: 1.75rem 1.25rem; }
+    .enquiry-row { flex-direction: column; gap: 0; }
+    section { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .footer-upper { flex-direction: column; }
+    .footer-lower { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="skiloh-logo-nav.png" alt="Skiloh Golf Coaching" style="height:46px;width:auto;display:block;"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-mobile-link">About</a></li>
+    <li><a href="#coaching" class="nav-mobile-link">Coaching</a></li>
+    <li><a href="#reviews" class="nav-mobile-link">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta nav-mobile-link">Book Now</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
+  <ul class="mobile-nav-links">
+    <li><a href="#about" class="mobile-nav-item">About</a></li>
+    <li><a href="#coaching" class="mobile-nav-item">Coaching</a></li>
+    <li><a href="#reviews" class="mobile-nav-item">Reviews</a></li>
+    <li><a href="#contact" class="mobile-nav-item mobile-nav-cta">Book Now</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Replace src below with your own hero image -->
+  <img class="hero-img" src="hero.jpg" alt="Sam Kiloh coaching at Deeside Golf Club">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Deeside Golf Club, Aberdeen</span>
+    <h1>Precision Coaching for <em>Ambitious</em> Golfers</h1>
+    <ul class="hero-bullets">
+      <li>Serious coaching designed for golfers who want more</li>
+      <li>Structured support wherever you are — online & in-person</li>
+      <li>Built on tour experience. Designed for measurable improvement</li>
+    </ul>
+    <a href="#coaching" class="hero-cta">
+      Explore Coaching
+      <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    SKILOH GOLF &nbsp;&nbsp;·&nbsp;&nbsp; PRECISION COACHING &nbsp;&nbsp;·&nbsp;&nbsp; PGA PROFESSIONAL &nbsp;&nbsp;·&nbsp;&nbsp; DEESIDE GOLF CLUB &nbsp;&nbsp;·&nbsp;&nbsp; ONLINE &amp; IN-PERSON &nbsp;&nbsp;·&nbsp;&nbsp; MEASURABLE IMPROVEMENT &nbsp;&nbsp;·&nbsp;&nbsp; SCOTLAND'S FINEST &nbsp;&nbsp;·&nbsp;&nbsp; 5 STAR RATED &nbsp;&nbsp;·&nbsp;&nbsp;
+    SKILOH GOLF &nbsp;&nbsp;·&nbsp;&nbsp; PRECISION COACHING &nbsp;&nbsp;·&nbsp;&nbsp; PGA PROFESSIONAL &nbsp;&nbsp;·&nbsp;&nbsp; DEESIDE GOLF CLUB &nbsp;&nbsp;·&nbsp;&nbsp; ONLINE &amp; IN-PERSON &nbsp;&nbsp;·&nbsp;&nbsp; MEASURABLE IMPROVEMENT &nbsp;&nbsp;·&nbsp;&nbsp; SCOTLAND'S FINEST &nbsp;&nbsp;·&nbsp;&nbsp; 5 STAR RATED &nbsp;&nbsp;·&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img-wrap">
+    <div class="about-img-frame"></div>
+    <!-- Replace src below with Sam's actual photo -->
+    <img class="about-img" src="sam.png" alt="Sam Kiloh, PGA Professional">
+  </div>
+  <div>
+    <p class="section-label">Your Coach</p>
+    <h2 class="section-title">Meet <em>Sam Kiloh</em></h2>
+    <div class="divider"></div>
+    <p class="about-bio">Sam joined the Professional Team at Deeside Golf Club in Aberdeen in 2022 and completed his traineeship through the PGA in 2024. He has competed in many of the mini tours around Europe and has been instrumental in growing the renowned Junior Section at Deeside Golf Club.</p>
+    <p class="about-bio">In 2024, Sam was appointed PGA Professional & Head of Junior Development.</p>
+    <ul class="about-checks">
+      <li>Strike the ball more consistently</li>
+      <li>Eliminate destructive misses</li>
+      <li>Build a swing you can trust under pressure</li>
+    </ul>
+    <div class="about-philosophy">
+      <h4>My Philosophy</h4>
+      <p>Most golfers don't need more information — they need clear feels they can repeat, practice that leads to real change, and confidence in what they're doing. That's exactly what I provide.</p>
+    </div>
+    <div style="margin-top: 2.5rem; opacity: 0.92;">
+      <img src="skiloh-logo.png" alt="Skiloh Golf Coaching" style="width: 220px; max-width: 100%; display: block;">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="coaching">
+  <p class="section-label">Work With Sam</p>
+  <h2 class="section-title">Choose Your <em>Path</em></h2>
+  <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <h3>In-Person Coaching</h3>
+      <p>1-on-1 sessions at Deeside Golf Club with advanced launch monitor analysis and a custom plan built around your game.</p>
+      <ul class="service-features">
+        <li>Elite 1-on-1 sessions</li>
+        <li>TrackMan video analysis</li>
+        <li>Custom success plan</li>
+        <li>After-care & follow-up drills</li>
+      </ul>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <h3>Online Coaching</h3>
+      <p>Receive personalised coaching no matter where you are in the world. Submit your swing, get expert analysis and a structured improvement plan.</p>
+      <ul class="service-features">
+        <li>Personalised swing analysis</li>
+        <li>Structured lesson plans</li>
+        <li>Direct messaging support</li>
+        <li>Progress tracking</li>
+      </ul>
+      <a href="https://skillest.com/coach/samkilohgolf" target="_blank" rel="noopener noreferrer" class="service-link">Start online →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <h3>Junior Development</h3>
+      <p>As Head of Junior Development at Deeside, Sam runs structured programmes for young golfers who want to compete and improve.</p>
+      <ul class="service-features">
+        <li>Age-appropriate coaching</li>
+        <li>Group & individual sessions</li>
+        <li>Competition preparation</li>
+        <li>Long-term development plan</li>
+      </ul>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / REVIEWS -->
+<section class="trust" id="reviews">
+  <h2 class="trust-title">Trusted by Golfers Worldwide</h2>
+  <div class="trust-stars">★★★★★</div>
+  <p class="trust-sub">5-Star Skilest Rating · 200+ Reviews</p>
+  <div class="trust-locations">
+    <span class="trust-locations-inner">
+      Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp; Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp; Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp; Coaching numerous golfers worldwide and growing &nbsp;&nbsp;|&nbsp;&nbsp; UK &nbsp;&nbsp;|&nbsp;&nbsp; Europe &nbsp;&nbsp;|&nbsp;&nbsp; USA &nbsp;&nbsp;|&nbsp;&nbsp; Asia &nbsp;&nbsp;|&nbsp;&nbsp; Australasia &nbsp;&nbsp;|&nbsp;&nbsp;
+    </span>
+  </div>
+  <div class="reviews-marquee-wrap">
+    <div class="reviews-track" id="reviewsTrack">
+      <!-- Original set -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's analysis was superb. He helped break down my faults in such a simple and understandable way. I now feel like I've got the best possible plan going forward, with easy-to-remember drills and swing feelings that I can take straight onto the course. I'd highly recommend Sam to anyone looking to improve their golf game!"</p>
+        <p class="review-author">Paddy McKenna</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's coaching skills are excellent, and the use of technology and the Skillest follow up really helps when it comes to remembering everything that was said and taking the info to the range to practise. Highly recommend Sam if you are keen to improve any area of your golf at whatever level."</p>
+        <p class="review-author">Stewart Ritchie</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"After my first in-person lesson with Sam, I was very impressed how quickly he identified some small issues in my swing and was able to provide simple but very effective training drills to resolve. Very approachable and great detail provided with the analysis. Top coach."</p>
+        <p class="review-author">Niall Young</p>
+      </div>
+      <!-- Duplicated set for seamless infinite loop -->
+      <div class="review-card" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's analysis was superb. He helped break down my faults in such a simple and understandable way. I now feel like I've got the best possible plan going forward, with easy-to-remember drills and swing feelings that I can take straight onto the course. I'd highly recommend Sam to anyone looking to improve their golf game!"</p>
+        <p class="review-author">Paddy McKenna</p>
+      </div>
+      <div class="review-card" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sam's coaching skills are excellent, and the use of technology and the Skillest follow up really helps when it comes to remembering everything that was said and taking the info to the range to practise. Highly recommend Sam if you are keen to improve any area of your golf at whatever level."</p>
+        <p class="review-author">Stewart Ritchie</p>
+      </div>
+      <div class="review-card" aria-hidden="true">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"After my first in-person lesson with Sam, I was very impressed how quickly he identified some small issues in my swing and was able to provide simple but very effective training drills to resolve. Very approachable and great detail provided with the analysis. Top coach."</p>
+        <p class="review-author">Niall Young</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY / CONTACT -->
+<section class="enquiry" id="contact">
+  <div>
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Enquire With <em>Sam</em></h2>
+    <div class="divider"></div>
+    <p class="enquiry-desc">Whether you're looking to book a session, want to find out more about coaching options, or simply have a question — fill in the form and Sam will get back to you personally.</p>
+    <p class="enquiry-desc">Tell Sam a little about your game, what you're working on, and what you're hoping to achieve. The more detail you share, the better he can help.</p>
+    <p class="enquiry-detail">Or reach Sam directly at <a href="mailto:samkilohgolf@outlook.com">samkilohgolf@outlook.com</a></p>
+  </div>
+  <div>
+    <div class="enquiry-form-wrap">
+      <form id="enquiry-form" action="https://formspree.io/f/xeoqkgdp" method="POST">
+        <input type="hidden" name="_subject" value="New Coaching Enquiry — Skiloh Golf" />
+        <input type="hidden" name="_replyto" value="samkilohgolf@outlook.com" />
+        <input type="text" name="_gotcha" style="display:none" />
+        <div class="enquiry-row">
+          <input type="text" name="name" placeholder="Your Name" required class="enquiry-input" />
+          <input type="email" name="email" placeholder="Your Email" required class="enquiry-input" />
+        </div>
+        <input type="tel" name="phone" placeholder="Your Phone Number" class="enquiry-input" />
+        <textarea name="message" placeholder="Your enquiry — tell Sam about your game, goals, or anything you'd like to discuss..." required class="enquiry-input enquiry-textarea"></textarea>
+        <button type="submit" class="enquiry-submit">Send Enquiry →</button>
+        <p class="enquiry-note">Sam will be in touch as soon as possible.</p>
+      </form>
+      <div class="enquiry-success" id="enquiry-success">
+        <div class="enquiry-success-icon">✓</div>
+        <h3>Enquiry Received</h3>
+        <p>Thanks for getting in touch. Sam will review your message and get back to you personally as soon as possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-upper">
+    <div class="footer-brand">
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/sam.kiloh.golf/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@samkiloh" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.01a8.16 8.16 0 0 0 4.78 1.52V7.07a4.85 4.85 0 0 1-1.01-.38z"/></svg>
+        </a>
+        <!-- Skillest -->
+        <a href="https://skillest.com/coach/samkilohgolf" target="_blank" rel="noopener noreferrer" class="social-link social-link--skillest" aria-label="Skillest" style="overflow:hidden;padding:0;">
+          <img src="skillest-icon.png" alt="Skillest" width="38" height="38" style="display:block;object-fit:cover;border-radius:50%;">
+        </a>
+        <!-- Deeside Golf Club -->
+        <a href="https://deesidegolfclub.com/golf-lessons-adult/#the-coaching-team" target="_blank" rel="noopener noreferrer" class="social-link social-link--deeside" aria-label="Deeside Golf Club" style="overflow:hidden;padding:0;">
+          <img src="deeside-logo.png" alt="Deeside Golf Club" width="38" height="38" style="display:block;object-fit:cover;border-radius:50%;">
+        </a>
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#coaching">Coaching</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">© 2025 Skiloh. Sam Kiloh PGA Professional. Deeside Golf Club, Aberdeen.</p>
+  </div>
+</footer>
+
+<script>
+  // --- HAMBURGER MOBILE NAV ---
+  (function () {
+    const btn = document.getElementById('navHamburger');
+    const overlay = document.getElementById('mobileNavOverlay');
+    const closeBtn = document.getElementById('mobileNavClose');
+    const items = document.querySelectorAll('.mobile-nav-item');
+
+    function openMenu() {
+      overlay.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      overlay.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (btn) btn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    items.forEach(item => item.addEventListener('click', closeMenu));
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeMenu();
+    });
+  })();
+
+  // --- ENQUIRY FORM (Formspree → samkilohgolf@outlook.com) ---
+  (function () {
+    const form = document.getElementById('enquiry-form');
+    const success = document.getElementById('enquiry-success');
+    if (!form || !success) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Send Enquiry →';
+          alert('Something went wrong. Please email Sam directly at samkilohgolf@outlook.com');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Send Enquiry →';
+        alert('Something went wrong. Please email Sam directly at samkilohgolf@outlook.com');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
